@@ -8,6 +8,13 @@ Dependency:
 
 ------------------------------
 
+Install dependencies (Ubuntu):
+```
+sudo apt-get install libgeographiclib-dev libproj-dev
+```
+
+------------------------------
+
 Build and run:
 ```
 mkdir build
@@ -17,10 +24,7 @@ make -j6
 ./ProjectAirBaseMarking
 ```
 
-Install dependencies (Ubuntu):
-```
-sudo apt-get install libgeographiclib-dev libproj-dev
-```
+------------------------------
 
 ![alt tag](img/app-screen-1.png)
 ![alt tag](img/app-screen-2.png)
