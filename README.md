@@ -19,7 +19,7 @@ Build and run:
 ```
 mkdir build
 cd build
-qmake ..
+qmake ../src
 make -j6
 ./ProjectAirBaseMarking
 ```
