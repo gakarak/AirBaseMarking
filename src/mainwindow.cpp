@@ -332,21 +332,23 @@ void MainWindow::loadDataset()
         if(fdata.open(QFile::ReadOnly)) {
             QTextStream txt(&fdata);
             QString strCSV;
-              while (txt.readLineInto(&strCSV)) {
-                  int markerType = MarkerBasic::getTypeMarkerFromCSVString(strCSV);
-                  MarkerBasic* newMarker = NULL;
-                  if(markerType==TypeMarkerCircular) {
-                      newMarker = new MarkerCircular();
-                  } else if(markerType==TypeMarkerRect) {
-                      newMarker = new MarkerRect();
-                  } else {
-                      qDebug() << "WARNING: unknown marker type skip... [" << strCSV << "]";
-                  }
-                  if(newMarker!=NULL) {
-                      newMarker->loadFromCSVString(strCSV);
-                      newMarker->placeOnScene(this->mapScene);
-                  }
-              }
+            //while (txt.readLineInto(&strCSV)) {
+            while (!txt.atEnd()) {
+                strCSV = txt.readLine();
+                int markerType = MarkerBasic::getTypeMarkerFromCSVString(strCSV);
+                MarkerBasic* newMarker = NULL;
+                if(markerType==TypeMarkerCircular) {
+                    newMarker = new MarkerCircular();
+                } else if(markerType==TypeMarkerRect) {
+                    newMarker = new MarkerRect();
+                } else {
+                    qDebug() << "WARNING: unknown marker type skip... [" << strCSV << "]";
+                }
+                if(newMarker!=NULL) {
+                    newMarker->loadFromCSVString(strCSV);
+                    newMarker->placeOnScene(this->mapScene);
+                }
+            }
         }
     }
     // 3. finish
